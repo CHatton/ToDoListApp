@@ -9,13 +9,11 @@
                     ng-click="data.toggleTask(task)"
                     ng-class="{active: data.isTaskShown(task)}">
               <i class="icon" ng-class="data.isTaskShown(task) ? 'ion-minus' : 'ion-plus'"></i>
-            Task {{task.taskName}}
-            
+            Task {{task.taskName}}  
           </ion-item>
           <ion-item class="item-accordion"
                     ng-repeat="prop in task.properties"
                     ng-show="data.isTaskShown(task)">
-
             {{prop}}
           </ion-item>
           </div>
@@ -27,16 +25,16 @@
 
 	<div ng-show="addButton" class="list">
 	  <label class="item item-input">
-	    <input type="text" ng-model="taskName" placeholder="Enter Task Name">
+	    <input type="text" ng-model="currentTask.taskName" placeholder="Enter Task Name">
 	  </label>
 	  <label class="item item-input">
-	    <input type="text" ng-model="fullTask" placeholder="Enter Task Description">
+	    <input type="text" ng-model="currentTask.fullTask" placeholder="Enter Task Description">
 	  </label>
 	  <label class="item item-input">
-	    <input type="date" ng-model="dueDate" placeholder="Enter Date Due">
+	    <input type="date" ng-model="currentTask.dueDate" placeholder="Enter Date Due">
 	  </label>
-	  <button class="button button-full button-assertive" ng-click="data.addTask(taskName,fullTask,dueDate,'Personall')">Add New Task</button>
+	  <button class="button button-full button-assertive" 
+	  ng-click="data.addTask(data.allTasks,currentTask.taskName,currentTask.fullTask,currentTask.dueDate,'Personal')">Add New Task</button>
 	</div>
   </ion-content>
-	
 </ion-view>

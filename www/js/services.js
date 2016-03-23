@@ -3,22 +3,22 @@ angular.module('starter.services', [])
 .factory('AllTasks',function(){
 	// factory in charge of providing tasks
 	// to controllers
-	var allTasks = []; // start off with no tasks
-	var finishedTasks = [];
+	var allTasks = JSON.parse(window.localStorage['tasks'] || []); 
+	//loads in from local storage or starts off with no tasks
+	var finishedTasks = JSON.parse(window.localStorage['finished'] || []);
 
-	function addTask(taskName,taskDescription,dueDate,category){
+	function addTask(listToAddTo,taskName,taskDescription,dueDate,category){
 		var startDate = new Date();// added right now
 		var newTask = {
 			taskName:taskName,
 			dueDate:dueDate,
 			category:category,
 			startDate:startDate,
-		    properties:[taskDescription,"Due: " + dueDate.toDateString(),
+		    properties:[taskDescription,
+		    "Due: " + dueDate.toDateString(),
 		    "Started: " + startDate.toDateString()]}; 
-		allTasks.push(newTask); // add it to all tasks too
-
-
-		// sort them by date here
+		listToAddTo.push(newTask); // add it to all tasks too
+		save();
 	}
 
 	// http://codepen.io/shengoo/pen/bNbvdO/
@@ -37,23 +37,42 @@ angular.module('starter.services', [])
 		
 	function sortByDueDate(){
 		allTasks.sort(function(a,b){
-  			return b.properties[1] - a.properties[1];
+  			return b.dueDate - a.dueDate;
 		});
 		finishedTasks.sort(function(a,b){
-  			return b.properties[1] - a.properties[1];
+  			return b.dueDate - a.dueDate;
 		});
 	}
 	function sortByDateAdded(){
 		allTasks.sort(function(a,b){
-  			return b.properties[2] - a.properties[2];
+  			return b.startDate - a.startDate;
 		});
 		finishedTasks.sort(function(a,b){
-  			return b.properties[2] - a.properties[2];
+  			return b.startDate - a.startDate;
 		});
 	}
+
+	function save(){
+		window.localStorage['tasks'] = JSON.stringify(allTasks);
+		window.localStorage['finished'] = JSON.stringify(finishedTasks);
+	}
+
 
 	return {allTasks:allTasks,addTask:addTask,
 		finishedTasks:finishedTasks, 
 		sortByDueDate:sortByDueDate,sortByDateAdded:sortByDateAdded,
-		toggleTask:toggleTask,isTaskShown:isTaskShown}
+		toggleTask:toggleTask,isTaskShown:isTaskShown, save:save}
+})
+
+.factory('CurrentTask',function(){
+
+  var dateAdded;
+  var taskName;
+  var fullTask;
+  var dueDate;
+
+  return { dateAdded: dateAdded, 
+  	taskName:taskName,
+  	fullTask:fullTask,
+  	dueDate:dueDate};
 });

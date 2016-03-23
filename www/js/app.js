@@ -19,6 +19,7 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
+
   });
 })
 
@@ -46,7 +47,8 @@ angular.module('starter', ['ionic', 'starter.controllers','starter.services'])
       url: '/work',
       views: {
         'menuContent': {
-          templateUrl: 'templates/work.html'
+          templateUrl: 'templates/work.html',
+          controller: 'WorkCtrl'
         }
       }
     })

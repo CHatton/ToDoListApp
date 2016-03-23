@@ -1,5 +1,39 @@
 <ion-view view-title="Work">
   <ion-content>
     <h1>Work</h1>
+     	<ion-list>
+        <div ng-repeat="task in data.allTasks">
+        <div ng-if="task.category === 'Work'">
+          <ion-item class="item-stable"
+                    ng-click="data.toggleTask(task)"
+                    ng-class="{active: data.isTaskShown(task)}">
+              <i class="icon" ng-class="data.isTaskShown(task) ? 'ion-minus' : 'ion-plus'"></i>
+            Task {{task.taskName}}  
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="prop in task.properties"
+                    ng-show="data.isTaskShown(task)">
+            {{prop}}
+          </ion-item>
+          </div>
+        </div>
+      </ion-list>
+    <div>
+    	<button ng-click="toggleAdd()" class="button button-royal button-full">Create New Task</button> 
+    </div>
+
+	<div ng-show="addButton" class="list">
+	  <label class="item item-input">
+	    <input type="text" ng-model="currentTask.taskName" placeholder="Enter Task Name">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" ng-model="currentTask.fullTask" placeholder="Enter Task Description">
+	  </label>
+	  <label class="item item-input">
+	    <input type="date" ng-model="currentTask.dueDate" placeholder="Enter Date Due">
+	  </label>
+	  <button class="button button-full button-assertive" 
+	  ng-click="data.addTask(data.allTasks,currentTask.taskName,currentTask.fullTask,currentTask.dueDate,'Work')">Add New Task</button>
+	</div>
   </ion-content>
 </ion-view>
