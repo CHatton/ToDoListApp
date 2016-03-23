@@ -1,0 +1,37 @@
+<ion-view view-title="Personal">
+  <ion-content>
+	<h1>Personal Tasks</h1>
+
+ 	<ion-list>
+        <div ng-repeat="task in data.personalTasks">
+          <ion-item class="item-stable"
+                    ng-click="toggleTask(task)"
+                    ng-class="{active: isTaskShown(task)}">
+              <i class="icon" ng-class="isTaskShown(task) ? 'ion-minus' : 'ion-plus'"></i>
+            Task {{task.taskName}}
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="prop in task.properties"
+                    ng-show="isTaskShown(task)">
+            {{prop}}
+          </ion-item>
+        </div>
+      </ion-list>
+
+
+	<div class="list">
+	  <label class="item item-input">
+	    <input type="text" ng-model="taskName" placeholder="Enter Task Name">
+	  </label>
+	  <label class="item item-input">
+	    <input type="text" ng-model="fullTask" placeholder="Enter Task Description">
+	  </label>
+	  <label class="item item-input">
+	    <input type="date" ng-model="dueDate" placeholder="Enter Date Due">
+	  </label>
+	</div>
+
+	<button class="button" ng-click="data.addTask(data.personalTasks,taskName,fullTask,dueDate)">Add Task</button>
+  </ion-content>
+	
+</ion-view>
