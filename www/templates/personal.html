@@ -3,23 +3,29 @@
 	<h1>Personal Tasks</h1>
 
  	<ion-list>
-        <div ng-repeat="task in data.personalTasks">
+        <div ng-repeat="task in data.allTasks">
+        <div ng-if="task.category === 'Personal'">
           <ion-item class="item-stable"
-                    ng-click="toggleTask(task)"
-                    ng-class="{active: isTaskShown(task)}">
-              <i class="icon" ng-class="isTaskShown(task) ? 'ion-minus' : 'ion-plus'"></i>
+                    ng-click="data.toggleTask(task)"
+                    ng-class="{active: data.isTaskShown(task)}">
+              <i class="icon" ng-class="data.isTaskShown(task) ? 'ion-minus' : 'ion-plus'"></i>
             Task {{task.taskName}}
+            
           </ion-item>
           <ion-item class="item-accordion"
                     ng-repeat="prop in task.properties"
-                    ng-show="isTaskShown(task)">
+                    ng-show="data.isTaskShown(task)">
+
             {{prop}}
           </ion-item>
+          </div>
         </div>
       </ion-list>
+    <div>
+    	<button ng-click="toggleAdd()" class="button button-royal button-full">Create New Task</button> 
+    </div>
 
-
-	<div class="list">
+	<div ng-show="addButton" class="list">
 	  <label class="item item-input">
 	    <input type="text" ng-model="taskName" placeholder="Enter Task Name">
 	  </label>
@@ -29,9 +35,8 @@
 	  <label class="item item-input">
 	    <input type="date" ng-model="dueDate" placeholder="Enter Date Due">
 	  </label>
+	  <button class="button button-full button-assertive" ng-click="data.addTask(taskName,fullTask,dueDate,'Personall')">Add New Task</button>
 	</div>
-
-	<button class="button" ng-click="data.addTask(data.personalTasks,taskName,fullTask,dueDate)">Add Task</button>
   </ion-content>
 	
 </ion-view>

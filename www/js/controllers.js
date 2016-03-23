@@ -22,20 +22,16 @@ angular.module('starter.controllers', [])
 
 })
 
-.controller('PersonalCtrl', function($scope,AllTasks) {
+.controller('PersonalCtrl', function($scope,$ionicActionSheet,AllTasks) {
   $scope.data = AllTasks;
   $scope.dateAdded;
   $scope.taskName;
   $scope.fullTask;
   $scope.dueDate;
 
-  // http://codepen.io/shengoo/pen/bNbvdO/
-  // I got the collapsing list stuff from here
+  $scope.addButton = false; // to show the add button div
+  $scope.toggleAdd = function(){ // toggle the showing
+    $scope.addButton = !$scope.addButton;
+  }
   
-  $scope.toggleTask = function(task) {
-    task.show = !task.show;
-  };
-  $scope.isTaskShown = function(task) {
-    return task.show;
-  };
 });
