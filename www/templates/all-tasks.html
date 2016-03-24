@@ -1,13 +1,11 @@
 <ion-view view-title="All Tasks">
   <ion-content>
-    <h1>All Tasks</h1>
-
-     <ion-list>
+     	<ion-list>
         <div ng-repeat="task in data.allTasks">
           <ion-item class="item-stable"
                     ng-click="data.toggleTask(task)"
                     ng-class="{active: data.isTaskShown(task)}">
-              <i class="icon" ng-class="data.isTaskShown(task) ? 'ion-minus' : 'ion-plus'"></i>
+              <i class="icon" ng-class="data.isTaskShown(task) ? 'ion-android-arrow-dropup-circle' : 'ion-android-arrow-dropdown-circle'"></i>
             Task {{task.taskName}}
           </ion-item>
           <ion-item class="item-accordion"
@@ -15,7 +13,12 @@
                     ng-show="data.isTaskShown(task)">
             {{prop}}
           </ion-item>
-        </div>
+          <ion-checkbox ng-show="data.isTaskShown(task)"
+          ng-model="task.finished">Finished: </ion-checkbox>
+          <button class="button button-assertive button-full"
+          ng-show="task.finished" 
+          ng-click="data.finishTask($index)">Remove Task!</button>
+          </div>
       </ion-list>
 
   </ion-content>

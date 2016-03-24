@@ -1,6 +1,5 @@
 <ion-view view-title="Settings">
   <ion-content>
-    <h1>Settings</h1>
     <ion-list>
     <ion-item>
 		<button class="button button-full" ng-click="data.sortByDateAdded()">Sort By Date Added</button>
@@ -9,7 +8,11 @@
 	   	<button class="button button-full" ng-click="data.sortByDueDate()">Sort By Date Due</button>
 	    </ion-item>
 	     <ion-item>
-	   	<button class="button button-full" ng-click="reset()">Reset Everything</button>
+
+	   	<button class="button button-full" ng-click="toggleAreYouSure()">Reset Everything</button>
+	   	<ion-checkbox ng-show="areYouSure" ng-model="showReset">Are you sure you want to reset everything?</ion-checkbox>
+	   	<button class="button button-full button-assertive" ng-show="showReset" ng-click="reset();showReset = false">RESET</button>
+	   	<!-- Disable the button after the user presses it-->
 	    </ion-item>
     </ion-list>
   </ion-content>

@@ -1,21 +1,25 @@
 <ion-view view-title="Personal">
   <ion-content>
-	<h1>Personal Tasks</h1>
 
- 	<ion-list>
+ 	     	<ion-list>
         <div ng-repeat="task in data.allTasks">
         <div ng-if="task.category === 'Personal'">
           <ion-item class="item-stable"
                     ng-click="data.toggleTask(task)"
                     ng-class="{active: data.isTaskShown(task)}">
               <i class="icon" ng-class="data.isTaskShown(task) ? 'ion-minus' : 'ion-plus'"></i>
-            Task {{task.taskName}}  
+            Task {{task.taskName}}
           </ion-item>
           <ion-item class="item-accordion"
                     ng-repeat="prop in task.properties"
                     ng-show="data.isTaskShown(task)">
             {{prop}}
           </ion-item>
+          <ion-checkbox ng-show="data.isTaskShown(task)"
+          ng-model="task.finished">Finished: </ion-checkbox>
+          <button class="button button-assertive button-full"
+          ng-show="task.finished" 
+          ng-click="data.finishTask($index)">Remove Task!</button>
           </div>
         </div>
       </ion-list>

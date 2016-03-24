@@ -1,5 +1,20 @@
 <ion-view view-title="Finished">
   <ion-content>
-    <h1>Finished</h1>
+     <ion-list>
+        <div ng-repeat="task in data.finishedTasks">
+          <ion-item class="item-stable"
+                    ng-click="data.toggleTask(task)"
+                    ng-class="{active: data.isTaskShown(task)}">
+              <i class="icon" ng-class="data.isTaskShown(task) ? 'ion-minus' : 'ion-plus'"></i>
+            Task {{task.taskName}}
+          </ion-item>
+          <ion-item class="item-accordion"
+                    ng-repeat="prop in task.properties"
+                    ng-show="data.isTaskShown(task)">
+            {{prop}}
+          </ion-item>
+        </div>
+      </ion-list>
+    <div>
   </ion-content>
 </ion-view>
