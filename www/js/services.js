@@ -1,6 +1,7 @@
 angular.module('starter.services', [])
 
-.factory('AllTasks',function(){
+.factory('AllTasks',function(CurrentTask){
+	var currTask = CurrentTask;
 	// factory in charge of providing tasks
 	// to controllers
 	var allTasks = JSON.parse(window.localStorage['tasks'] || []); 
@@ -17,12 +18,18 @@ angular.module('starter.services', [])
 			show:false, // starts off hidden
 			finishDate:null, // don't have a finish date to start with
 			startDate:startDate,
-		    properties:[taskDescription,
-		    "Due: " + dueDate.toDateString(),
-		    "Started: " + startDate.toDateString()]}; 
+		    properties:["Description: " + taskDescription,
+			    "Started: " + startDate.toDateString(),
+			    "Due Date: " + dueDate.toDateString()]}; 
 		listToAddTo.push(newTask); // add it to all tasks too
-		save();
-		addButton = false;
+		
+		currTask.dueDate = null;
+  	  	currTask.taskName = null;
+   		currTask.fullTask = null;
+   		
+   		// reset the current task to clear menu
+		save();	
+		
 	}
 
 	var finishTask = function(index){
@@ -41,10 +48,6 @@ angular.module('starter.services', [])
 	var toggleTask = function(task) {
     	task.show = !task.show;
   	};
-
-  	var isTaskShown = function(task) {
-    	return task.show;
- 	};
 
 	// needed to find out how to sort by date property
 	// http://stackoverflow.com/questions/10123953/sort-javascript-object-array-by-date
@@ -79,8 +82,8 @@ angular.module('starter.services', [])
 	return {allTasks:allTasks,addTask:addTask,
 		finishedTasks:finishedTasks, 
 		sortByDueDate:sortByDueDate,sortByDateAdded:sortByDateAdded,
-		toggleTask:toggleTask,isTaskShown:isTaskShown, save:save,
-		finishTask:finishTask}
+		toggleTask:toggleTask, save:save,
+		finishTask:finishTask,currTask:currTask}
 })
 
 .factory('CurrentTask',function(){

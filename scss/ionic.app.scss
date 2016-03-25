@@ -18,6 +18,79 @@ $dark:                            #444 !default;
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
+$energized: #E7E737; // yellow
+
+$assertive: #E73F3F; // red
+
+$positive: #506370; // blue/grey
+
+$balanced: #00E341; // green
+$balanced2: #2CD15B;
+$balanced3: #69D186;
+
+$royal: #7E45D3; // purple
+$royal2: #9D3DB8;
+$royal3: #C23FC4;
+
+$calm: #0767AB; // bluey
+$calm2: #407DA8;
+$calm3: #85ACC7;
+
+//$assertive: #B30000; // red
+
+$side-menu-colour: #EBEAD8;
+
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+
+.item-content{
+	//background-color: $side-menu-colour !important;
+}
+
+.royal2{
+	background-color: $royal2;
+	color:white;
+}
+
+.royal3{
+	background-color: $royal3;
+	color:white;
+}
+
+.calm2{
+	background-color: $calm2;
+	color:white;
+}
+
+.calm3{
+	background-color: $calm3;
+	color:white;
+}
+
+.balanced2{
+	background-color: $balanced2;
+	color:white;
+}
+
+.balanced3{
+	background-color: $balanced3;
+	color:white;
+}
+
+.create-task{
+	border-style:solid;
+	border-size: 1px;
+}
+
+.work-royal{
+	border-color:$royal2;
+}
+
+.personal-calm{
+	border-color:$calm2;
+}
+
+.task-italic{
+	font-style:italic;
+}

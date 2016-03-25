@@ -1,25 +1,28 @@
 <ion-view view-title="All Tasks">
   <ion-content>
-     	<ion-list>
-        <div ng-repeat="task in data.allTasks">
-          <ion-item class="item-stable"
-                    ng-click="data.toggleTask(task)"
-                    ng-class="{active: data.isTaskShown(task)}">
-              <i class="icon" ng-class="data.isTaskShown(task) ? 'ion-android-arrow-dropup-circle' : 'ion-android-arrow-dropdown-circle'"></i>
-            Task {{task.taskName}}
-          </ion-item>
-          <ion-item class="item-accordion"
-                    ng-repeat="prop in task.properties"
-                    ng-show="data.isTaskShown(task)">
-            {{prop}}
-          </ion-item>
-          <ion-checkbox ng-show="data.isTaskShown(task)"
-          ng-model="task.finished">Finished: </ion-checkbox>
-          <button class="button button-assertive button-full"
+    <ion-list>
+      <div ng-repeat="task in data.allTasks">
+        <ion-item class="item" 
+          ng-class="{'royal2' : task.category === 'Work','calm2' : task.category ==='Personal'}"
+          ng-click="data.toggleTask(task)">
+           <i class="icon" ng-class="task.show ? 'ion-minus' : 'ion-plus'"></i> 
+          Task {{task.taskName}}
+        </ion-item>
+        <div class="card" ng-show="task.show"> 
+        <ion-item
+          ng-class="{'royal3' : task.category==='Work','calm3' : task.category ==='Personal'}"
+          ng-repeat="prop in task.properties">
+          {{prop}}
+        </ion-item>
+        </div>
+          <ion-toggle ng-show="task.show"
+            ng-class="{'royal3' : task.category==='Work','calm3' : task.category ==='Personal'}"
+            ng-model="task.finished">Finished: </ion-toggle>
+        
+        <button class="button button-balanced button-full"
           ng-show="task.finished" 
-          ng-click="data.finishTask($index)">Remove Task!</button>
-          </div>
-      </ion-list>
-
+          ng-click="data.finishTask($index)">Finished Task!</button>
+      </div>
+    </ion-list>
   </ion-content>
 </ion-view>

@@ -1,32 +1,32 @@
 <ion-view view-title="Work">
   <ion-content>
-     	<ion-list>
-        <div ng-repeat="task in data.allTasks">
-        <div ng-if="task.category === 'Work'">
-          <ion-item class="item-stable"
-                    ng-click="data.toggleTask(task)"
-                    ng-class="{active: data.isTaskShown(task)}">
-              <i class="icon" ng-class="data.isTaskShown(task) ? 'ion-minus' : 'ion-plus'"></i>
-            Task {{task.taskName}}
-          </ion-item>
-          <ion-item class="item-accordion"
-                    ng-repeat="prop in task.properties"
-                    ng-show="data.isTaskShown(task)">
-            {{prop}}
-          </ion-item>
-          <ion-checkbox ng-show="data.isTaskShown(task)"
-          ng-model="task.finished">Finished: </ion-checkbox>
-          <button class="button button-assertive button-full"
-          ng-show="task.finished" 
-          ng-click="data.finishTask($index)">Remove Task!</button>
-          </div>
-        </div>
-      </ion-list>
-    <div>
-    	<button ng-click="toggleAdd()" class="button button-royal button-full">Create New Task</button> 
-    </div>
+	<ion-list>
+		<div ng-repeat="task in data.allTasks">
+			<div ng-if="task.category === 'Work'">
+				<ion-item class="item royal2" ng-click="data.toggleTask(task)">
+					<i class="icon" ng-class="task.show ? 'ion-minus' : 'ion-plus'"></i>
+					Task {{task.taskName}}
+				</ion-item>
+			<div class="card" ng-show = "task.show">
+				<ion-item class="item royal3 task-italic"
+					ng-repeat="prop in task.properties">
+				{{prop}}
+				</ion-item>
+			</div>
+				<ion-toggle class="royal3" ng-show="task.show"
+				ng-model="task.finished">Finished: </ion-toggle>
+			<button class="button button-balanced button-full"
+				ng-show="task.finished" 
+				ng-click="data.finishTask($index)">Task Finished!</button>
+			</div>
+		</div>
+	</ion-list>
 
-	<div ng-show="addButton" class="list">
+<button ng-click="toggleAdd()"
+class="button button-full create-task work-royal">Create New Task</button> 
+</div>
+
+	<div ng-show="addButton">
 	  <label class="item item-input">
 	    <input type="text" ng-model="currentTask.taskName" placeholder="Enter Task Name">
 	  </label>
@@ -36,9 +36,8 @@
 	  <label class="item item-input">
 	    <input type="date" ng-model="currentTask.dueDate" placeholder="Enter Date Due">
 	  </label>
-	  <button class="button button-full button-assertive" 
+	  <button class="button button-full button-balanced" 
 	  ng-click="data.addTask(data.allTasks,currentTask.taskName,currentTask.fullTask,currentTask.dueDate,'Work')">Add New Task</button>
-	  <!-- disable the button after the user adds a new task-->
 	</div>
   </ion-content>
 </ion-view>

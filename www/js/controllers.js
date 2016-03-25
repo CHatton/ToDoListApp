@@ -31,8 +31,6 @@ angular.module('starter.controllers', [])
   }
 
   $scope.reset = function(){
-   
-
     // http://stackoverflow.com/questions/1232040/how-do-i-empty-an-array-in-javascript
     while($scope.data.allTasks.length > 0){
       $scope.data.allTasks.pop();
