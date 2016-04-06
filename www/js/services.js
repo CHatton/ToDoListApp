@@ -4,9 +4,11 @@ angular.module('starter.services', [])
 	var currTask = CurrentTask;
 	// factory in charge of providing tasks
 	// to controllers
-	var allTasks = JSON.parse(window.localStorage['tasks'] || []); 
+	var allTasks = JSON.parse(window.localStorage['tasks'] || '[]'); 
+   // var allTasks = angular.toJson(window.localStorage['tasks'] || '[]'); 
 	//loads in from local storage or starts off with no tasks
-	var finishedTasks = JSON.parse(window.localStorage['finished'] || []);
+	var finishedTasks = JSON.parse(window.localStorage['finished'] || '[]');
+    //var finishedTasks = angular.toJson(window.localStorage['finished'] || '[]');
 
 	function addTask(listToAddTo,taskName,taskDescription,dueDate,category){
 		var startDate = new Date();// added right now
