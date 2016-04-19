@@ -5,15 +5,10 @@ angular.module('starter.services', [])
 	// factory in charge of providing tasks
 	// to controllers
 	var allTasks = JSON.parse(window.localStorage['tasks'] || '[]'); 
-<<<<<<< HEAD
+
 	//loads in from local storage or starts off with no tasks
 	var finishedTasks = JSON.parse(window.localStorage['finished'] || '[]');
-=======
-   // var allTasks = angular.toJson(window.localStorage['tasks'] || '[]'); 
-	//loads in from local storage or starts off with no tasks
-	var finishedTasks = JSON.parse(window.localStorage['finished'] || '[]');
-    //var finishedTasks = angular.toJson(window.localStorage['finished'] || '[]');
->>>>>>> af208fa009aafd89f5751a9fb708ca1ebd7a7ebc
+
 
 	function addTask(listToAddTo,taskName,taskDescription,dueDate,category){
 		var startDate = new Date();// added right now
