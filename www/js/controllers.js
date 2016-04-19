@@ -3,7 +3,7 @@ angular.module('starter.controllers', [])
 .controller('AppCtrl', function($scope) {})
 
 .controller('AllCtrl', function($scope,AllTasks) {
-  $scope.data = AllTasks;
+  $scope.data = AllTasks; // all it needs is all the tasks, as all that's needed is to display them
 })
 
 .controller('WorkCtrl', function($scope,AllTasks,CurrentTask) {
@@ -16,13 +16,14 @@ angular.module('starter.controllers', [])
 })
 
 .controller('FinishedCtrl', function($scope,AllTasks) {
-  $scope.data = AllTasks;
+  $scope.data = AllTasks; // again just displaying tasks, not editing
 })
 
 .controller('SettingsCtrl', function($scope,AllTasks,CurrentTask) {
   $scope.data = AllTasks;
   $scope.currentTask = CurrentTask;
 
+  // these two values are for the double checking on full reset of all data
   $scope.areYouSure = false;
   $scope.showReset = false;
 
@@ -48,7 +49,7 @@ angular.module('starter.controllers', [])
     // as it gets set on addition to the list
     $scope.data.save(); // save the now reset state of the app
   
-    $scope.areYouSure = false;
+    $scope.areYouSure = false; // close the drop down menu after the button has been pressed
   }
 })
 

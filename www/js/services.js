@@ -4,9 +4,9 @@ angular.module('starter.services', [])
 	var currTask = CurrentTask;
 	// factory in charge of providing tasks
 	// to controllers
-	var allTasks = JSON.parse(window.localStorage['tasks'] || []); 
+	var allTasks = JSON.parse(window.localStorage['tasks'] || '[]'); 
 	//loads in from local storage or starts off with no tasks
-	var finishedTasks = JSON.parse(window.localStorage['finished'] || []);
+	var finishedTasks = JSON.parse(window.localStorage['finished'] || '[]');
 
 	function addTask(listToAddTo,taskName,taskDescription,dueDate,category){
 		var startDate = new Date();// added right now
@@ -21,6 +21,7 @@ angular.module('starter.services', [])
 		    properties:["Description: " + taskDescription,
 			    "Started: " + startDate.toDateString(),
 			    "Due Date: " + dueDate.toDateString()]}; 
+			    // I have it as a list of properties, so that I can iterate through with an ng-repeat when the user clicks on the task
 		listToAddTo.push(newTask); // add it to all tasks too
 		
 		currTask.dueDate = null;
@@ -28,7 +29,7 @@ angular.module('starter.services', [])
    		currTask.fullTask = null;
    		
    		// reset the current task to clear menu
-		save();	
+		save();	// every time a task is added, save it to local storage, so that if the user closes the app at any time, all the tasks should be saved
 		
 	}
 
@@ -87,7 +88,7 @@ angular.module('starter.services', [])
 })
 
 .factory('CurrentTask',function(){
-
+	// this is just the task that is being made to be added to the list
   var dateAdded;
   var taskName;
   var fullTask;

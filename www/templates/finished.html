@@ -1,7 +1,13 @@
+<!-- I based the design from the info I got here http://loring-dodge.azurewebsites.net/ionic-item-expand/
+  and altered it to get the desired effect.
+-->
+
 <ion-view view-title="Finished">
   <ion-content>
   <ion-list>
     <div ng-repeat="task in data.finishedTasks">
+    <!-- just going through the finished tasks, not any of the other ones
+    acts the same was as the other templates though-->
         <ion-item class="item balanced2" ng-click="data.toggleTask(task)">
           <i class="icon" ng-class="task.show ? 'ion-minus' : 'ion-plus'"></i>
           Task {{task.taskName}}

@@ -1,7 +1,12 @@
+<!-- I based the design from the info I got here http://loring-dodge.azurewebsites.net/ionic-item-expand/
+  and altered it to get the desired effect.
+-->
+
 <ion-view view-title="All Tasks">
   <ion-content>
     <ion-list>
       <div ng-repeat="task in data.allTasks">
+      <!-- we want to go through every task in the list-->
         <ion-item class="item" 
           ng-class="{'royal2' : task.category === 'Work','calm2' : task.category ==='Personal'}"
           ng-click="data.toggleTask(task)">
@@ -12,7 +17,8 @@
         <ion-item
           ng-class="{'royal3' : task.category==='Work','calm3' : task.category ==='Personal'}"
           ng-repeat="prop in task.properties">
-          {{prop}}
+          <!-- Here the colour the task appears in is based off of the category of the task-->
+          {{prop}} <!-- show each of the properties of the task when the task is clicked on-->
         </ion-item>
         </div>
           <ion-toggle ng-show="task.show"

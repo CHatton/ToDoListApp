@@ -1,8 +1,13 @@
+<!-- I based the design from the info I got here http://loring-dodge.azurewebsites.net/ionic-item-expand/
+  and altered it to get the desired effect.
+-->
+
 <ion-view view-title="Personal">
   <ion-content>
     <ion-list>
       <div ng-repeat="task in data.allTasks">
         <div ng-if="task.category === 'Personal'">
+        <!-- going through all the tasks, but just display the personal category tasks-->
           <ion-item class="item calm2" ng-click="data.toggleTask(task)">
             <i class="icon" ng-class="task.show ? 'ion-minus' : 'ion-plus'"></i>
             Task {{task.taskName}}
@@ -22,7 +27,8 @@
       </div>
     </ion-list>
     <div>
-    	<button ng-click="toggleAdd()" class="button button-full create-task personal-calm">Create New Task</button> 
+    	<button ng-click="toggleAdd()" 
+      class="button button-full create-task personal-calm">Create New Task</button> 
     </div>
 
 	<div ng-show="addButton" class="list">
